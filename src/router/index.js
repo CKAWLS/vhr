@@ -1,21 +1,23 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import {createRouter, createWebHistory} from 'vue-router'
+import {initMenu} from "../utils/menu";
+import store from "../store";
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'LoginView',
+    component: () => import('../views/LoginView'),
+    meta: {
+      hidden: true
+    }
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/About.vue')
-    }
+    path: '/home',
+    name: 'Home',
+    component: () => import('../views/Home'),
+    meta: {
+      hidden: false
+    },
   }
 ]
 
@@ -25,3 +27,17 @@ const router = createRouter({
 })
 
 export default router
+
+router.beforeEach((to, from, next) => {
+  console.log(to.path)
+  // 如果是去登陆页面直接放行
+  if (to.path === "/") {
+    next();
+  } else {
+    // 去其页面先获取路由
+    if (window.sessionStorage.getItem("user")) {
+      initMenu(router, store);
+      next();
+    }
+  }
+})
