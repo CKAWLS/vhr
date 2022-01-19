@@ -2,7 +2,7 @@
   <div>
     <el-container class="el-container">
       <el-header class="home-header">
-        <div class="header-title">微人事</div>
+        <div class="header-title">Micro Personnel</div>
         <el-dropdown class="header-dropdown"
                      @command="handleCommand"
                      trigger="click">
@@ -45,11 +45,14 @@
           </el-menu>
         </el-aside>
         <el-main>
-          <div class="breadcrumb">
+          <div class="breadcrumb" v-if="this.$router.currentRoute.value.path != '/home'">
             <el-breadcrumb separator="/">
               <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
               <el-breadcrumb-item>{{this.$router.currentRoute.value.name}}</el-breadcrumb-item>
             </el-breadcrumb>
+          </div>
+          <div class="homepage" v-else>
+            welcome to this system!!!
           </div>
           <router-view/>
         </el-main>
@@ -141,7 +144,7 @@ export default {
 }
 
 .header-title {
-  font-family: 新宋体;
+  font-family: Consolas;
   font-size: 30px;
   color: #FFF;
 }
@@ -173,5 +176,15 @@ export default {
 .breadcrumb {
   width: auto;
   height: 40px;
+}
+
+.homepage{
+  width: auto;
+  height: auto;
+  font-size: 38px;
+  font-family: Consolas;
+  text-align: center;
+  color: lightskyblue;
+  padding-top: 50px;
 }
 </style>
