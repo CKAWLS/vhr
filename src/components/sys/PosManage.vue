@@ -62,7 +62,6 @@ export default {
 
     function initPositions() {
       getRequest('/system/basic/pos/').then(resp => {
-        console.log(resp);
         data.positions = resp.obj;
       })
     }
@@ -161,7 +160,6 @@ export default {
             this.multipleSelection.forEach(item => {
               ids += 'ids=' + item.id + '&';
             })
-            console.log(ids)
             deleteRequest("/system/basic/pos/" + ids.slice(0, ids.length - 1)).then(resp => {
               if (resp) {
                 this.initPositions();

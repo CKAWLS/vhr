@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ElMessage} from "element-plus";
+import router from "../router";
 
 //封装的网络请求基类
 export function baseRequest(config) {
@@ -35,6 +36,7 @@ export function baseRequest(config) {
       ElMessage({message: "权限不足，请联系管理员", type: "error"});
     } else if (error.response.status == 401) {
       ElMessage({message: "尚未登录，请登录", type: "error"});
+      router.replace('/').then(r => "请求失败");
     } else {
       if (error.response.data.msg) {
         ElMessage({message: error.response.data.msg, type: "error"});

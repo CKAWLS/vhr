@@ -29,7 +29,6 @@ const router = createRouter({
 export default router
 
 router.beforeEach((to, from, next) => {
-  console.log(to.path)
   // 如果是去登陆页面直接放行
   if (to.path === "/") {
     next();
