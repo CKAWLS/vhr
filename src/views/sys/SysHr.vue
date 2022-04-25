@@ -1,12 +1,14 @@
 <template>
   <div>
-    操作员管理
+    <hr-manage></hr-manage>
   </div>
 </template>
 
 <script>
+import HrManage from "../../components/sys/HrManage";
 export default {
-  name: "SysHr"
+  name: "SysHr",
+  components: {HrManage}
 }
 </script>
 

@@ -154,4 +154,8 @@ export default {
 .dep-btn {
   padding: 1px;
 }
+
+.dep-operate > button {
+  min-height: 22px !important;
+}
 </style>
